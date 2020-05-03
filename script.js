@@ -1,5 +1,33 @@
 "use strict";
 
+class Particle {
+
+    constructor(x, y, radius, color) {
+        this._x = x;
+        this._y = y;
+        this.radius = radius;
+        this.speed = makeDepth(radius);
+        this.color = color;
+    }
+
+    get x() {
+        return this._x;
+    }
+
+    set x(value) {
+        this._x = value;
+    }
+
+    get y() {
+        return this._y;
+    }
+
+    set y(value) {
+        this._y = value;
+    }
+
+}
+
 let canvas = document.getElementById('canvas');
 let particles = [];
 canvas.width = canvas.clientWidth;
@@ -28,13 +56,7 @@ function createParticles() {
     // добавляем частицу, если их меньше 100
     if(particles.length < 300) {
         let rad = getRandomArbitrary(1, 8);
-        particles.push({
-            x: getRandomArbitrary(0, canvas.width) - 60,
-            y: 0,
-            radius: rad,
-            speed: makeDepth(rad),
-            color: "white",
-        });
+        particles.push(new Particle(getRandomArbitrary(0, canvas.width) - 60, 0, rad, "white"));
     }
 }
 
